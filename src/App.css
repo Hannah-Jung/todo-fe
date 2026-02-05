@@ -1,0 +1,307 @@
+body {
+  color: dimgray !important;
+  background-color: aliceblue !important;
+}
+
+.container {
+  max-width: 720px !important;
+}
+
+h1 {
+  color: lightblue;
+  margin: 40px 0 !important;
+}
+
+h5 {
+  color: lightblue;
+  margin: 5px !important;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-weight: 800;
+  font-size: clamp(2rem, 10vw, 3rem);
+  color: lightblue;
+  margin-bottom: 30px !important;
+  line-height: 1;
+}
+
+.title-icon {
+  color: lightcoral;
+  display: flex;
+  align-items: center;
+  margin-left: 6px;
+}
+
+.todo-item {
+  justify-content: space-between;
+  margin-bottom: clamp(0, 0.5vw, 50px);
+}
+
+.todo-item:hover {
+  border-color: rgba(173, 216, 230, 0.9);
+  box-shadow: 0 2px 8px rgba(173, 216, 230, 0.25);
+}
+
+.todo-content {
+  padding: 0.5rem 1em;
+  overflow: hidden;
+  word-break: break-word;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.todo-content:hover {
+  background-color: rgba(173, 216, 230, 0.1);
+}
+
+.todo-edit-input {
+  flex: 1;
+  padding: 0.5rem 1em;
+  border: 2px solid lightblue;
+  border-radius: 4px;
+  font-size: inherit;
+  outline: none;
+}
+
+.todo-created-at {
+  padding: 0 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  color: gray;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.btn-cancel {
+  flex-shrink: 0;
+  margin: 0;
+  color: lightblue;
+}
+
+.add-item-row {
+  margin-bottom: clamp(1rem, 2vw, 50px);
+}
+
+.button-add-inline {
+  flex-shrink: 0;
+  color: lightblue;
+}
+
+.input-box {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.input-box:focus {
+  outline: none;
+}
+
+.icon-button {
+  min-height: 2.75rem;
+  width: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: 0.3s;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0;
+  border: none;
+}
+
+.btn-done, .btn-undo, .btn-cancel {
+  color: lightblue;
+}
+
+.btn-done:hover,
+.btn-undo:hover,
+.btn-cancel:hover,
+.button-add-inline:hover {
+  background-color: lightblue;
+}
+
+.btn-delete {
+  color: lightcoral;
+}
+
+.btn-delete:hover {
+  background-color: lightcoral;
+  color: #ffffff;
+}
+
+.item-complete {
+  background-color: whitesmoke !important;
+  text-decoration: line-through;
+}
+
+.search-row {
+  margin-bottom: 1rem;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: lightblue;
+  pointer-events: none;
+}
+
+.no-result-msg {
+  color: lightblue;
+  text-align: center;
+  margin: 50px 0;
+}
+
+.box-container {
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  background-color: white;
+  min-height: 2.75rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.add-task-wrapper {
+  gap: 0.5rem;
+}
+
+.input-inline {
+  flex: 1;
+  min-width: 0;
+  border: none !important;
+}
+
+.add-task-input {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.search-input {
+  padding-left: 2.5rem;
+  padding-right: 10px;
+}
+
+.icon-button:hover {
+  color: #ffffff;
+}
+
+.todo-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  border-bottom: 1px solid lightblue;
+  justify-content: center;
+}
+
+.todo-tab {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: lightblue;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.todo-tab:hover {
+  color: gray;
+  border-bottom-color: white;
+}
+
+.todo-tab.active {
+  color: white;
+  background-color: lightblue;
+  border-bottom-color: lightblue;
+  font-weight: 600;
+}
+
+.button-add-inline:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loader {
+  position: relative;
+  width: 100px;
+  height: 130px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.loader:before {
+  content: '';
+  position: absolute;
+  width: 54px;
+  height: 25px;
+  left: 50%;
+  top: 0;
+  background-image:
+    radial-gradient(ellipse at center, #0000 24%, lightblue 25%, lightblue 64%, #0000 65%),
+    linear-gradient(to bottom, #0000 34%, lightblue 35%);
+  background-size: 12px 12px, 100% auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+  transform: translate(-50%, -65%);
+  box-shadow: 0 -3px rgba(0, 0, 0, 0.25) inset;
+}
+
+.loader:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
+  width: 66%;
+  height: 60%;
+  background: linear-gradient(to bottom, lightblue 30%, #0000 31%);
+  background-size: 100% 16px;
+  animation: writeDown 2s ease-out infinite;
+}
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+@keyframes writeDown {
+  0% {
+    height: 0%;
+    opacity: 0;
+  }
+
+  20% {
+    height: 0%;
+    opacity: 1;
+  }
+
+  80% {
+    height: 65%;
+    opacity: 1;
+  }
+
+  100% {
+    height: 65%;
+    opacity: 0;
+  }
+}
