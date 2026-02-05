@@ -202,6 +202,7 @@ h5 {
   display: flex;
   gap: 0.5rem;
   margin: 0.5rem 0;
+  border-bottom: 1px solid lightblue;
   justify-content: center;
 }
 
@@ -218,7 +219,6 @@ h5 {
 
 .todo-tab:hover {
   color: gray;
-  border-bottom-color: white;
 }
 
 .todo-tab.active {
