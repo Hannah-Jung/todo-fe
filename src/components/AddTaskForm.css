@@ -3,17 +3,26 @@
 }
 
 .add-task-wrapper {
+  position: relative;
   gap: 0.5rem;
 }
 
+.add-task-input-icon {
+  position: absolute;
+  left: 10px;
+  color: lightblue;
+  pointer-events: none;
+}
+
 .add-task-input {
-  padding-left: 10px;
+  padding-left: 2.5rem;
   padding-right: 10px;
 }
 
 .button-add-inline {
   flex-shrink: 0;
   color: lightblue;
+  margin-right: 0.5rem;
 }
 
 .button-add-inline:hover {

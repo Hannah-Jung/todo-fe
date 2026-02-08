@@ -6,6 +6,10 @@
   position: relative;
 }
 
+.search-wrapper .icon-button {
+  margin-right: 0.5rem;
+}
+
 .search-icon {
   position: absolute;
   left: 10px;
@@ -35,17 +39,4 @@
   max-height: 0;
   opacity: 0;
   margin-bottom: 0;
-}
-
-.app-snackbar-toast {
-  animation: app-snackbar-slide-down 0.35s ease-out;
-}
-
-.app-snackbar-box {
-
-  animation: app-snackbar-slide-down 0.35s ease-out;
-}
-
-.app-snackbar-box.app-snackbar-exit {
-  animation: app-snackbar-slide-up 0.3s ease-in forwards;
 }

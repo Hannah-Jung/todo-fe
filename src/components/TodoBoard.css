@@ -1,3 +1,10 @@
+.todo-board-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
 .todo-tabs {
   display: flex;
   gap: 0.75rem;
@@ -42,34 +49,68 @@
   border: 1px solid lightblue;
   border-bottom: 1px solid transparent;
   border-radius: 5px 5px 0 0;
+  color: lightblue;
 }
 
-/* .clear-btn {
-  background: var(--btn-gradient);
-  border: var(--btn-border-light);
-  min-width: 2rem;
-  min-height: 2rem;
-  padding: 0.25rem;
-  box-sizing: border-box;
-  color: lightblue;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
+.todo-tab:not(.active):hover {
+  color: gray;
+  border-color: gray;
+  border-bottom-color: transparent;
+}
+
+.todo-tab:not(.active):hover .todo-tab-badge {
+  color: gray;
+  border-color: gray;
+}
+
+.todo-tab.active {
+  color: white;
+  background-color: lightblue;
+  border-bottom-color: lightblue;
+  font-weight: 600;
+}
+
+.todo-tab.active .todo-tab-badge {
+  background-color: white !important;
+  color: lightblue !important;
+}
+
+.todo-list-scrollable {
+  flex: 1;
+  min-height: 0;
+  max-height: 72vh;
+  min-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  box-shadow: var(--btn-shadow-raised);
-} */
+  flex-direction: column;
+}
+
+.todo-list-scrollable.empty-state {
+  justify-content: flex-start;
+  padding-top: 20%;
+}
+
+.todo-list-scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.no-result-msg {
+  color: lightblue;
+  text-align: center;
+  margin: 0;
+}
 
 .clear-btn {
   width: 6rem;
   min-width: 6rem;
   height: 2rem;
   background: var(--btn-gradient);
-  border: var(--btn-border-light);
+  border: lightcoral;
   box-sizing: border-box;
-  color: lightblue;
+  color: lightcoral;
   cursor: pointer;
   font-weight: 700;
   font-size: 0.875rem;
@@ -95,7 +136,7 @@
 }
 
 .clear-btn:hover {
-  background-color: lightblue;
+  background-color: lightcoral;
   color: white;
   box-shadow: var(--btn-shadow-pressed);
   transform: translateY(1px);
@@ -106,52 +147,6 @@
   box-shadow: var(--btn-shadow-pressed);
   transform: translateY(1px);
   border-color: transparent;
-}
-
-.todo-tab.active {
-  color: white;
-  background-color: lightblue;
-  border-bottom-color: lightblue;
-  font-weight: 600;
-}
-
-.todo-tab.active .todo-tab-badge {
-  background-color: white !important;
-  color: lightblue !important;
-}
-
-.no-result-msg {
-  color: lightblue;
-  text-align: center;
-  margin: 0;
-}
-
-.todo-board-root {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  flex: 1;
-}
-
-.todo-list-scrollable {
-  flex: 1;
-  min-height: 0;
-  max-height: 72vh;
-  min-height: 250px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  display: flex;
-  flex-direction: column;
-}
-
-.todo-list-scrollable.empty-state {
-  justify-content: center;
-}
-
-.todo-list-scrollable::-webkit-scrollbar {
-  display: none;
 }
 
 .scroll-to-top-wrap {

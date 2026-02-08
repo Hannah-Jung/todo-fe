@@ -2,13 +2,6 @@
   --auth-focus-ring: 0 0 0 0.25rem rgba(173, 216, 230, 0.35);
 }
 
-.auth-page .login-box h1 {
-  color: lightblue;
-  margin: 10px 0 !important;
-  padding: 10px 0;
-  text-align: center;
-}
-
 .auth-page.display-center {
   display: flex;
   flex-direction: column;
@@ -29,10 +22,55 @@
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 
+.auth-page .login-box h1 {
+  color: lightblue;
+  margin: 10px 0 !important;
+  padding: 10px 0;
+  text-align: center;
+}
+
 .auth-page .login-box label {
   font-weight: 600;
   color: lightblue;
   margin-bottom: 0.25rem;
+}
+
+.auth-page .login-box .form-control:focus {
+  border-color: lightblue;
+  box-shadow: var(--auth-focus-ring);
+  outline: none;
+}
+
+.auth-page .login-box .btn-primary {
+  border: var(--btn-border-light);
+  background: var(--btn-gradient);
+  color: lightblue;
+  font-weight: 700;
+  transition: 0.3s;
+  box-shadow: var(--btn-shadow-raised);
+}
+
+.auth-page .login-box .btn-primary:hover {
+  background-color: lightblue;
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+}
+
+.auth-page .button-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 2rem auto;
+}
+
+.auth-page .login-box span {
+  margin-top: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .auth-page .auth-link-button {
@@ -71,38 +109,6 @@
   outline: none;
 }
 
-.auth-page .button-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 2rem auto;
-}
-
-.auth-page .login-box .btn-primary {
-  border: var(--btn-border-light);
-  background: var(--btn-gradient);
-  color: lightblue;
-  font-weight: 700;
-  transition: 0.3s;
-  box-shadow: var(--btn-shadow-raised);
-}
-
-.auth-page .login-box .btn-primary:hover {
-  background-color: lightblue;
-  border-color: transparent;
-  color: #ffffff;
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
-}
-
-.auth-page .login-box span {
-  margin-top: 2rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
 .auth-page .password-input-wrap {
   display: flex;
   align-items: stretch;
@@ -111,12 +117,6 @@
 
 .auth-page .password-input-wrap .form-control {
   border-right: none;
-}
-
-.auth-page .login-box .form-control:focus {
-  border-color: lightblue;
-  box-shadow: var(--auth-focus-ring);
-  outline: none;
 }
 
 .auth-page .password-input-wrap .input-group-text {

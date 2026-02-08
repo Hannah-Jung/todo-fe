@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import PasswordField from "../components/common/PasswordField";
-import "./LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../utils/api";
 import toast from "react-hot-toast";
+import PasswordField from "../components/common/PasswordField";
+import api from "../utils/api";
+import { isValidEmail } from "../utils/validation";
+import "./LoginPage.css";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -30,6 +31,10 @@ const RegisterPage = () => {
     }
     if (!email.trim()) {
       setEmailError("Please enter your email address");
+      return;
+    }
+    if (!isValidEmail(email)) {
+      setEmailError("Invalid email format");
       return;
     }
     if (!password) {
@@ -94,6 +99,12 @@ const RegisterPage = () => {
               setEmail(e.target.value);
               if (emailError) setEmailError("");
             }}
+            onBlur={() => {
+              if (!email.trim()) setEmailError("");
+              else if (!isValidEmail(email))
+                setEmailError("Invalid email format");
+              else setEmailError("");
+            }}
             isInvalid={!!emailError}
           />
           {emailError && (
@@ -117,7 +128,7 @@ const RegisterPage = () => {
           }}
           onBlur={() => {
             if (password && password.length < 4) {
-              setPasswordError("Password must be at least 4 characters.");
+              setPasswordError("Password must be at least 4 characters");
             } else if (password.length >= 4) {
               setPasswordError("");
             }
@@ -135,7 +146,7 @@ const RegisterPage = () => {
           }}
           onBlur={() => {
             if (confirmPassword && confirmPassword !== password) {
-              setConfirmPasswordError("Passwords do not match.");
+              setConfirmPasswordError("Passwords do not match");
             } else if (confirmPassword && confirmPassword === password) {
               setConfirmPasswordError("");
             }

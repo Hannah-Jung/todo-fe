@@ -1,11 +1,11 @@
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import TodoPage from "./pages/TodoPage";
-import { Toaster } from "react-hot-toast";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./components/common/AppModal.css";
+import "./App.css";
 
 function App() {
   return (

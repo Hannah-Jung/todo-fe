@@ -1,14 +1,14 @@
-import "./TodoPage.css";
+import { useEffect, useState, useMemo } from "react";
+import Container from "react-bootstrap/Container";
+import { CircleCheckBig, Search, Plus } from "lucide-react";
+import { useOptimisticUpdate } from "../hooks/useOptimisticUpdate";
+import { showSnackbar, showSnackbarWithUndo } from "../utils/Snackbar.jsx";
+import api from "../utils/api";
 import TodoBoard from "../components/TodoBoard.jsx";
 import SearchBar from "../components/SearchBar.jsx";
 import AddTaskForm from "../components/AddTaskForm.jsx";
 import Loader from "../components/common/Loader.jsx";
-import Container from "react-bootstrap/Container";
-import { useEffect, useState, useMemo } from "react";
-import api from "../utils/api";
-import { CircleCheckBig, Search, Plus } from "lucide-react";
-import { useOptimisticUpdate } from "../hooks/useOptimisticUpdate";
-import { showSnackbar, showSnackbarWithUndo } from "../utils/Snackbar.jsx";
+import "./TodoPage.css";
 import "../utils/Snackbar.css";
 
 function TodoPage() {
@@ -18,6 +18,7 @@ function TodoPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [selectedTab, setSelectedTab] = useState("all");
 
   const filteredList = useMemo(
     () =>
@@ -27,21 +28,18 @@ function TodoPage() {
     [todoList, searchQuery],
   );
 
-  // const getTasks = async () => {
-  //   try {
-  //     setIsLoading(true);
-  //     const response = await api.get("/tasks");
-  //     setTodoList(response.data.data);
-  //   } catch (err) {
-  //     console.log("Error", err);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+  useEffect(() => {
+    getTasks();
+  }, []);
+
+  const { toggleComplete, updateTask, deleteItem } = useOptimisticUpdate(
+    todoList,
+    setTodoList,
+  );
+
   const getTasks = async (silent = false) => {
     try {
       if (!silent) setIsLoading(true);
-      // await new Promise((r) => setTimeout(r, 1000));
       const response = await api.get("/tasks");
       setTodoList(response.data.data);
     } catch (err) {
@@ -60,7 +58,7 @@ function TodoPage() {
       if (response.status === 200) {
         console.log("Successfully added a task");
         setTodoValue("");
-        getTasks();
+        getTasks(true);
       } else {
         throw new Error("Task cannot be added");
       }
@@ -68,15 +66,6 @@ function TodoPage() {
       console.log("Error", err);
     }
   };
-
-  useEffect(() => {
-    getTasks();
-  }, []);
-
-  const { toggleComplete, updateTask, deleteItem } = useOptimisticUpdate(
-    todoList,
-    setTodoList,
-  );
 
   const clearCompleted = async () => {
     try {
@@ -86,7 +75,6 @@ function TodoPage() {
       if (completedIds.length === 0) return;
 
       await Promise.all(completedIds.map((id) => api.delete(`/tasks/${id}`)));
-      // getTasks();
       getTasks(true);
       showSnackbar("All completed tasks have been deleted");
     } catch (error) {
@@ -100,7 +88,6 @@ function TodoPage() {
         task: task.task,
         isComplete: task.isComplete ?? false,
       });
-      // getTasks();
       getTasks(true);
     } catch (err) {
       console.log("Error restoring task", err);
@@ -119,7 +106,12 @@ function TodoPage() {
         </h1>
         <div className="icon-buttons-row">
           <button
-            onClick={() => setIsAddOpen(!isAddOpen)}
+            onClick={() => {
+              setSearchQuery("");
+              setIsSearchOpen(false);
+              setSelectedTab("all");
+              setIsAddOpen(!isAddOpen);
+            }}
             className={`icon-button add-toggle-button${isAddOpen ? " add-toggle-open" : ""}`}
             title="Add Task"
           >
@@ -127,7 +119,11 @@ function TodoPage() {
             <span className="add-toggle-label">ADD</span>
           </button>
           <button
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
+            onClick={() => {
+              const willOpen = !isSearchOpen;
+              setIsSearchOpen(willOpen);
+              if (willOpen) setSelectedTab("all");
+            }}
             className={`icon-button search-toggle-button${isSearchOpen ? " search-toggle-open" : ""}`}
             title="Search"
           >
@@ -166,6 +162,8 @@ function TodoPage() {
       >
         <TodoBoard
           todoList={filteredList}
+          selectedTab={selectedTab}
+          setSelectedTab={setSelectedTab}
           toggleComplete={toggleComplete}
           updateTask={updateTask}
           deleteItem={deleteItem}

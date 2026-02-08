@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Plus } from "lucide-react";
+import { Plus, SquarePen } from "lucide-react";
 import "./AddTaskForm.css";
 
 function AddTaskForm({ value, onChange, onSubmit, isOpen, onToggle, onClear }) {
@@ -50,6 +50,7 @@ function AddTaskForm({ value, onChange, onSubmit, isOpen, onToggle, onClear }) {
       <Row className="add-item-row align-items-center">
         <Col xs={12}>
           <div className="box-container add-task-wrapper">
+            <SquarePen size={20} className="add-task-input-icon" />
             <input
               ref={inputRef}
               type="text"

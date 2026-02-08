@@ -1,5 +1,5 @@
 .app-modal .modal-title {
-  color: lightblue;
+  color: gray;
   font-size: 1.25rem;
   font-weight: 600;
 }
@@ -14,6 +14,22 @@
   padding: 0.75rem 1rem;
   border-top: 1px solid #dee2e6;
   gap: 0.5rem;
+}
+
+.app-modal-footer.app-modal-footer-edit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-modal-footer-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.app-modal-footer.app-modal-footer-end {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .app-modal .modal-footer .btn {
@@ -73,20 +89,4 @@
 .app-modal .app-modal-btn-primary:active {
   box-shadow: var(--btn-shadow-pressed);
   transform: translateY(1px);
-}
-
-.app-modal-footer.app-modal-footer-edit {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.app-modal-footer-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.app-modal-footer.app-modal-footer-end {
-  display: flex;
-  justify-content: flex-end;
 }

@@ -20,7 +20,7 @@ function SearchBar({ value, onChange, onClear, isOpen, onToggle }) {
           return;
         }
         if (value.trim()) {
-          onClear();
+          return;
         }
         onToggle();
       }
@@ -60,6 +60,7 @@ function SearchBar({ value, onChange, onClear, isOpen, onToggle }) {
               onChange={onChange}
               onKeyDown={(e) => {
                 if (e.key === "Escape") {
+                  onClear();
                   onToggle();
                 }
               }}
@@ -67,7 +68,10 @@ function SearchBar({ value, onChange, onClear, isOpen, onToggle }) {
             />
             <button
               className="icon-button btn-cancel"
-              onClick={onToggle}
+              onClick={() => {
+                onClear();
+                onToggle();
+              }}
               title="Close"
             >
               <X size={20} />

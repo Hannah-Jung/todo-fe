@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { Col, Row, Modal, Button } from "react-bootstrap";
 import { Undo, Check, Trash } from "lucide-react";
 import timeStamps from "../utils/timeStamps";
-import "./TodoItem.css";
 import { showSnackbarWithUndo } from "../utils/Snackbar.jsx";
+import "./TodoItem.css";
 
 const TodoItem = ({
   item,
@@ -60,13 +60,6 @@ const TodoItem = ({
     setIsEditing(false);
   };
 
-  // const handleDelete = async () => {
-  //   const deleted = await deleteItem(item._id);
-  //   setIsEditing(false);
-  //   if (deleted && restoreTask) {
-  //     showSnackbarWithUndo("Task deleted", () => restoreTask(deleted));
-  //   }
-  // };
   const handleDeleteWithUndo = async () => {
     const deleted = await deleteItem(item._id);
     if (deleted && restoreTask) {
@@ -103,20 +96,6 @@ const TodoItem = ({
                 {item.isComplete ? <Undo size={20} /> : <Check size={20} />}
               </button>
 
-              {/* <button
-                className="icon-button btn-delete"
-                onClick={async () => {
-                  const deleted = await deleteItem(item._id);
-                  if (deleted && restoreTask) {
-                    showSnackbarWithUndo("Task deleted", () =>
-                      restoreTask(deleted),
-                    );
-                  }
-                }}
-                title="Delete"
-              >
-                <Trash size={20} />
-              </button> */}
               <button
                 className="icon-button btn-delete"
                 onClick={handleDeleteWithUndo}

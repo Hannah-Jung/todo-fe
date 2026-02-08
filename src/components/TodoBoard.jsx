@@ -1,21 +1,22 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
-import TodoItem from "./TodoItem.jsx";
-import { BrushCleaning, ChevronUp } from "lucide-react";
 import Badge from "react-bootstrap/Badge";
-import "./TodoBoard.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import { BrushCleaning, ChevronUp } from "lucide-react";
+import TodoItem from "./TodoItem.jsx";
+import "./TodoBoard.css";
 
 const TodoBoard = ({
   todoList,
+  searchQuery,
+  selectedTab,
+  setSelectedTab,
   toggleComplete,
+  updateTask,
   deleteItem,
   restoreTask,
-  searchQuery,
   clearCompleted,
-  updateTask,
 }) => {
-  const [selectedTab, setSelectedTab] = useState("all");
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const [showClearConfirmModal, setShowClearConfirmModal] = useState(false);
 
@@ -143,13 +144,6 @@ const TodoBoard = ({
               marginBottom: "0.5rem",
             }}
           >
-            {/* <button
-              className="clear-btn"
-              onClick={() => setShowClearConfirmModal(true)}
-              title="Clear all completed tasks"
-            >
-              <BrushCleaning size={20} />
-            </button> */}
             <button
               className="clear-btn"
               onClick={() => setShowClearConfirmModal(true)}

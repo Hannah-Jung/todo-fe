@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "./LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import PasswordField from "../components/common/PasswordField";
 import api from "../utils/api";
-import toast from "react-hot-toast";
+import { isValidEmail } from "../utils/validation";
+import "./LoginPage.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -21,6 +22,10 @@ const LoginPage = () => {
     setPasswordError("");
     if (!email.trim()) {
       setEmailError("Please enter your email address");
+      return;
+    }
+    if (!isValidEmail(email)) {
+      setEmailError("Invalid email format");
       return;
     }
     if (!password) {
@@ -49,7 +54,7 @@ const LoginPage = () => {
       <Form className="login-box" onSubmit={handleLogin}>
         <h1>Login</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Email Address</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter your email address"
@@ -57,6 +62,12 @@ const LoginPage = () => {
             onChange={(e) => {
               setEmail(e.target.value);
               if (emailError) setEmailError("");
+            }}
+            onBlur={() => {
+              if (!email.trim()) setEmailError("");
+              else if (!isValidEmail(email))
+                setEmailError("Invalid email format");
+              else setEmailError("");
             }}
             isInvalid={!!emailError}
           />
