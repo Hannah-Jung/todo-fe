@@ -1,0 +1,214 @@
+.todo-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0.5rem 0 0.5rem;
+  border-bottom: 1px solid lightblue;
+  justify-content: center;
+}
+
+.todo-tab {
+  padding: 0 1.5rem 0.25rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-radius: 5px 5px 0 0;
+  color: lightblue;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-tab-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-tab-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: none;
+  border: 1px solid lightblue;
+  border-radius: 15px;
+  color: lightblue;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.todo-tab:hover {
+  border: 1px solid lightblue;
+  border-bottom: 1px solid transparent;
+  border-radius: 5px 5px 0 0;
+}
+
+/* .clear-btn {
+  background: var(--btn-gradient);
+  border: var(--btn-border-light);
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  color: lightblue;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: var(--btn-shadow-raised);
+} */
+
+.clear-btn {
+  width: 6rem;
+  min-width: 6rem;
+  height: 2rem;
+  background: var(--btn-gradient);
+  border: var(--btn-border-light);
+  box-sizing: border-box;
+  color: lightblue;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: var(--btn-shadow-raised);
+}
+
+.clear-btn-label {
+  display: none;
+  line-height: 1;
+}
+
+.clear-btn:hover .clear-btn-icon {
+  display: none;
+}
+
+.clear-btn:hover .clear-btn-label {
+  display: inline;
+}
+
+.clear-btn:hover {
+  background-color: lightblue;
+  color: white;
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+  border-color: transparent;
+}
+
+.clear-btn:active {
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+  border-color: transparent;
+}
+
+.todo-tab.active {
+  color: white;
+  background-color: lightblue;
+  border-bottom-color: lightblue;
+  font-weight: 600;
+}
+
+.todo-tab.active .todo-tab-badge {
+  background-color: white !important;
+  color: lightblue !important;
+}
+
+.no-result-msg {
+  color: lightblue;
+  text-align: center;
+  margin: 0;
+}
+
+.todo-board-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.todo-list-scrollable {
+  flex: 1;
+  min-height: 0;
+  max-height: 72vh;
+  min-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-list-scrollable.empty-state {
+  justify-content: center;
+}
+
+.todo-list-scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-to-top-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
+
+.scroll-to-top-btn {
+  background: var(--btn-gradient);
+  border: var(--btn-border-light);
+  color: lightblue;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  min-width: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: var(--btn-shadow-raised);
+}
+
+.scroll-to-top-label {
+  display: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.scroll-to-top-btn:hover .scroll-to-top-icon {
+  display: none;
+}
+
+.scroll-to-top-btn:hover .scroll-to-top-label {
+  display: inline;
+}
+
+.scroll-to-top-btn:hover {
+  background-color: lightblue;
+  color: white;
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+  border-color: transparent;
+}
+
+.scroll-to-top-btn:active {
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+  border-color: transparent;
+}
+
+@media (max-width: 480px) {
+  .todo-list-scrollable {
+    max-height: 67vh;
+  }
+}

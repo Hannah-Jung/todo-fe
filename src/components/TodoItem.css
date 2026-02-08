@@ -1,0 +1,59 @@
+.todo-item {
+  justify-content: space-between;
+  margin-bottom: clamp(0, 0.5vw, 50px);
+  transition: 0.3s;
+}
+
+.todo-item:hover {
+  border-color: rgba(173, 216, 230, 0.9);
+  box-shadow: 0 2px 8px rgba(173, 216, 230, 0.25);
+  background-color: rgb(173, 216, 230, 0.4);
+}
+
+.todo-item-actions {
+  margin-right: 0.5rem;
+  gap: 0.5rem;
+}
+
+.todo-content {
+  padding: 0.5rem 1em;
+  overflow: hidden;
+  word-break: break-word;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.todo-content:hover {
+  border-radius: 5px;
+}
+
+.todo-created-at {
+  padding: 0 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  color: gray;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.item-complete {
+  background-color: rgb(173, 216, 230, 0.5) !important;
+  text-decoration: line-through;
+}
+
+.todo-edit-textarea {
+  width: 100%;
+  min-height: 2.5rem;
+  max-height: 60vh;
+  padding: 0.5rem;
+  border: 2px solid lightblue;
+  border-radius: 4px;
+  font-size: inherit;
+  font-family: inherit;
+  outline: none;
+  resize: none;
+  overflow-y: auto;
+}

@@ -1,0 +1,171 @@
+.auth-page {
+  --auth-focus-ring: 0 0 0 0.25rem rgba(173, 216, 230, 0.35);
+}
+
+.auth-page .login-box h1 {
+  color: lightblue;
+  margin: 10px 0 !important;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.auth-page.display-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem 0;
+  box-sizing: border-box;
+}
+
+.auth-page .login-box {
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  max-width: 25rem;
+  width: 100%;
+  background-color: white;
+  padding: 20px 20px 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.auth-page .login-box label {
+  font-weight: 600;
+  color: lightblue;
+  margin-bottom: 0.25rem;
+}
+
+.auth-page .auth-link-button {
+  margin: 0.5rem auto;
+  padding: 0.25rem 1.25rem;
+  border: var(--btn-border-light);
+  border-radius: 5px;
+  background: var(--btn-gradient);
+  color: lightblue;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s;
+  box-shadow: var(--btn-shadow-raised);
+}
+
+.auth-page .auth-link-button:hover {
+  background-color: lightblue;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+  border-color: transparent;
+}
+
+.auth-page .login-box .btn-primary:active,
+.auth-page .login-box .btn-primary:focus,
+.auth-page .login-box .btn-primary:focus-visible,
+.auth-page .auth-link-button:active,
+.auth-page .auth-link-button:focus,
+.auth-page .auth-link-button:focus-visible {
+  box-shadow: var(--btn-shadow-pressed);
+  background-color: lightblue;
+  color: white;
+  transform: translateY(1px);
+  border-color: transparent;
+  outline: none;
+}
+
+.auth-page .button-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 2rem auto;
+}
+
+.auth-page .login-box .btn-primary {
+  border: var(--btn-border-light);
+  background: var(--btn-gradient);
+  color: lightblue;
+  font-weight: 700;
+  transition: 0.3s;
+  box-shadow: var(--btn-shadow-raised);
+}
+
+.auth-page .login-box .btn-primary:hover {
+  background-color: lightblue;
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+}
+
+.auth-page .login-box span {
+  margin-top: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.auth-page .password-input-wrap {
+  display: flex;
+  align-items: stretch;
+  transition: 0.3s;
+}
+
+.auth-page .password-input-wrap .form-control {
+  border-right: none;
+}
+
+.auth-page .login-box .form-control:focus {
+  border-color: lightblue;
+  box-shadow: var(--auth-focus-ring);
+  outline: none;
+}
+
+.auth-page .password-input-wrap .input-group-text {
+  background-color: white;
+  border-left: none;
+  cursor: pointer;
+  color: lightblue;
+  border: 1px solid #ced4da;
+  border-left: 0;
+}
+
+.auth-page .password-input-wrap .input-group-text:hover {
+  color: lightblue;
+}
+
+.auth-page .password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.75rem;
+  transition: 0.3s;
+}
+
+.auth-page .password-input-wrap .input-group-text.password-toggle:hover,
+.auth-page .password-input-wrap .input-group-text.password-toggle:focus {
+  background-color: lightblue;
+  color: white;
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+  border-color: lightblue;
+  outline: none;
+}
+
+.auth-page .password-input-wrap .input-group-text.password-toggle:focus {
+  box-shadow: var(--btn-shadow-pressed), 0 0 0 0.2rem rgba(173, 216, 230, 0.35);
+  border-left: 1px solid lightblue;
+}
+
+.auth-page .password-input-wrap:focus-within {
+  box-shadow: var(--auth-focus-ring);
+  border-radius: 5px;
+}
+
+.auth-page .password-input-wrap:focus-within .form-control {
+  border-color: lightblue;
+  box-shadow: none;
+  outline: none;
+}
+
+.auth-page .password-input-wrap:focus-within .input-group-text {
+  border-color: lightblue;
+}

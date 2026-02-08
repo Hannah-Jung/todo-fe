@@ -1,0 +1,51 @@
+.search-row {
+  margin: 0.75rem 0;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: lightblue;
+  pointer-events: none;
+}
+
+.search-input {
+  padding-left: 2.5rem;
+  padding-right: 10px;
+}
+
+.search-container {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-bottom 0.3s ease-out;
+  margin-bottom: 0;
+}
+
+.search-container.open {
+  max-height: 100px;
+  opacity: 1;
+}
+
+.search-container.closed {
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+}
+
+.app-snackbar-toast {
+  animation: app-snackbar-slide-down 0.35s ease-out;
+}
+
+.app-snackbar-box {
+
+  animation: app-snackbar-slide-down 0.35s ease-out;
+}
+
+.app-snackbar-box.app-snackbar-exit {
+  animation: app-snackbar-slide-up 0.3s ease-in forwards;
+}

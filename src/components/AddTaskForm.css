@@ -1,0 +1,40 @@
+.add-item-row {
+  margin: 0.75rem 0;
+}
+
+.add-task-wrapper {
+  gap: 0.5rem;
+}
+
+.add-task-input {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.button-add-inline {
+  flex-shrink: 0;
+  color: lightblue;
+}
+
+.button-add-inline:hover {
+  background-color: lightblue;
+}
+
+.add-container {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-bottom 0.3s ease-out;
+  margin-bottom: 0;
+}
+
+.add-container.open {
+  max-height: 100px;
+  opacity: 1;
+}
+
+.add-container.closed {
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+}
