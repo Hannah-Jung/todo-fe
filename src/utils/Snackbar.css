@@ -28,7 +28,7 @@
 
 .app-snackbar-box {
   background: #fff;
-  color: #333;
+  color: gray;
   border: 1px solid rgba(173, 216, 230, 0.8);
   border-radius: 8px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.12);

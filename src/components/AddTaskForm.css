@@ -1,5 +1,5 @@
 .add-item-row {
-  margin: 0.75rem 0;
+  margin: 0.75rem 0 !important;
 }
 
 .add-task-wrapper {
@@ -15,14 +15,14 @@
 }
 
 .add-task-input {
-  padding-left: 2.5rem;
-  padding-right: 10px;
+  padding-left: 2.5rem !important;
+  padding-right: 10px !important;
 }
 
 .button-add-inline {
   flex-shrink: 0;
   color: lightblue;
-  margin-right: 0.5rem;
+  margin-right: 0.5rem !important;
 }
 
 .button-add-inline:hover {

@@ -39,8 +39,8 @@
   font-weight: 600;
   background-color: none;
   border: 1px solid lightblue;
-  border-radius: 15px;
-  color: lightblue;
+  border-radius: 15px !important;
+  color: lightblue !important;
   padding-top: 2px;
   padding-bottom: 2px;
 }
@@ -59,8 +59,8 @@
 }
 
 .todo-tab:not(.active):hover .todo-tab-badge {
-  color: gray;
-  border-color: gray;
+  color: gray !important;
+  border-color: gray !important;
 }
 
 .todo-tab.active {
@@ -108,7 +108,7 @@
   min-width: 6rem;
   height: 2rem;
   background: var(--btn-gradient);
-  border: lightcoral;
+  border: 1px solid lightcoral;
   box-sizing: border-box;
   color: lightcoral;
   cursor: pointer;
