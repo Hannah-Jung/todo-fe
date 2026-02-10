@@ -8,6 +8,7 @@
   font-size: 1rem;
   color: #333;
   line-height: 1.5;
+  padding-bottom: 0.25rem;
 }
 
 .app-modal .modal-footer {
@@ -30,63 +31,4 @@
 .app-modal-footer.app-modal-footer-end {
   display: flex;
   justify-content: flex-end;
-}
-
-.app-modal .modal-footer .btn {
-  font-size: 0.9375rem;
-  font-weight: 500;
-  padding: 0.375rem 0.75rem;
-  border-radius: 6px;
-  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  box-shadow: var(--btn-shadow-raised);
-}
-
-.app-modal .app-modal-btn-cancel {
-  background-color: gray;
-  border-color: gray;
-  color: #fff;
-}
-
-.app-modal .app-modal-btn-cancel:hover {
-  background-color: dimgray;
-  border-color: dimgray;
-  color: #fff;
-}
-
-.app-modal .app-modal-btn-danger {
-  background-color: lightcoral;
-  border-color: lightcoral;
-  color: #fff;
-}
-
-.app-modal .app-modal-btn-danger:hover {
-  background-color: #dd7574;
-  border-color: #dd7574;
-  color: #fff;
-}
-
-.app-modal .app-modal-btn-primary {
-  background-color: lightblue;
-  border-color: lightblue;
-  color: #fff;
-}
-
-.app-modal .app-modal-btn-primary:hover {
-  background-color: #99c2ce;
-  border-color: #99c2ce;
-  color: #fff;
-}
-
-.app-modal .app-modal-btn-cancel:hover,
-.app-modal .app-modal-btn-danger:hover,
-.app-modal .app-modal-btn-primary:hover {
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
-}
-
-.app-modal .app-modal-btn-cancel:active,
-.app-modal .app-modal-btn-danger:active,
-.app-modal .app-modal-btn-primary:active {
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
 }

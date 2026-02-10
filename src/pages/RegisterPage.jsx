@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { CircleCheckBig } from "lucide-react";
 import PasswordField from "../components/common/PasswordField";
+import Button from "../components/common/Button";
 import api from "../utils/api";
 import { isValidEmail } from "../utils/validation";
 import "./LoginPage.css";
 
-const RegisterPage = () => {
+const RegisterPage = ({ user }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,6 +19,8 @@ const RegisterPage = () => {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const navigate = useNavigate();
+
+  if (user) return <Navigate to="/todo" replace />;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -64,8 +67,15 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="auth-page display-center">
+    <div className="auth-page display-center page-transition">
       <Form className="login-box" onSubmit={handleSubmit}>
+        <Link to="/" className="auth-brand-title">
+          <span className="auth-brand-text">CHECK IT</span>
+          <span className="auth-brand-icon">
+            <CircleCheckBig strokeWidth={2.5} />
+          </span>
+          <span className="auth-brand-text">FF</span>
+        </Link>
         <h1>Sign Up</h1>
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Name</Form.Label>
@@ -154,7 +164,7 @@ const RegisterPage = () => {
           error={confirmPasswordError}
         />
         <div className="button-box">
-          <Button className="btn-primary" type="submit">
+          <Button type="submit" variant="primary" size="large">
             Sign Up
           </Button>
           <span>

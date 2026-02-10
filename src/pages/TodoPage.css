@@ -75,147 +75,46 @@
   border: none !important;
 }
 
-.icon-button {
-  min-height: 2rem;
-  width: 2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  transition: 0.3s;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 0;
-  border: none;
-  padding: 0;
-}
-
-.icon-button:hover {
-  color: #ffffff;
-}
-
-.btn-cancel {
-  flex-shrink: 0;
-  margin: 0;
-  color: lightblue;
-}
-
-.btn-done,
-.btn-cancel {
-  color: lightblue;
-}
-
-.btn-undo {
-  border: 1px solid darkgray;
-  color: gray;
-}
-
-.btn-done:hover,
-.btn-undo:hover,
-.btn-cancel:hover {
-  background-color: lightblue;
-}
-
-.btn-delete {
-  color: lightcoral;
-}
-
-.btn-delete:hover {
-  background-color: lightcoral;
-  color: #ffffff;
-}
-
-.icon-button.btn-done,
-.icon-button.btn-undo,
-.icon-button.btn-delete {
-  border: 1px solid currentColor;
-  box-shadow: var(--btn-shadow-raised);
-}
-
-.icon-button.btn-done:hover,
-.icon-button.btn-undo:hover,
-.icon-button.btn-delete:hover {
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
-  border-color: transparent;
-}
-
-.icon-button.btn-undo:hover {
-  background-color: darkgrey;
-}
-
-.icon-button.btn-done:active,
-.icon-button.btn-undo:active,
-.icon-button.btn-delete:active {
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
-  border-color: transparent;
-}
-
 .icon-buttons-row {
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 1.5rem;
   align-items: center;
-  margin: 0;
+  margin: 0.5rem 0;
   padding: 2px 30px !important;
+  position: relative;
+  width: 100%;
+  padding-right: 3.5rem;
 }
 
-.search-toggle-button,
-.add-toggle-button {
-  width: 6rem;
-  min-width: 6rem;
-  color: lightblue;
-  border: var(--btn-border-light);
-  background: var(--btn-gradient);
-  box-shadow: var(--btn-shadow-raised);
+.account-menu-wrapper {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
 }
 
-.add-toggle-label,
-.search-toggle-label {
-  display: none;
-  font-weight: 700;
-  font-size: 0.875rem;
-  line-height: 1;
-  transition: 0.3s;
+.account-menu-name {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: lightblue !important;
+  text-align: center;
+  pointer-events: none;
 }
 
-.add-toggle-button:hover .add-toggle-icon,
-.search-toggle-button:hover .search-toggle-icon {
-  display: none;
+.account-dropdown-menu:hover .account-menu-name {
+  pointer-events: auto;
 }
 
-.add-toggle-button:hover .add-toggle-label,
-.search-toggle-button:hover .search-toggle-label {
-  display: inline;
+.account-dropdown-menu .dropdown-divider {
+  margin: 0;
+  border-color: lightblue;
 }
 
-.add-toggle-button.add-toggle-open,
-.search-toggle-button.search-toggle-open {
-  background-color: lightblue;
-  color: white;
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
-  border-color: transparent;
-}
-
-.add-toggle-button.add-toggle-open .add-toggle-icon,
-.search-toggle-button.search-toggle-open .search-toggle-icon {
-  display: none;
-}
-
-.add-toggle-button.add-toggle-open .add-toggle-label,
-.search-toggle-button.search-toggle-open .search-toggle-label {
-  display: inline;
-}
-
-.search-toggle-button:hover,
-.add-toggle-button:hover {
-  background-color: lightblue;
-  color: white;
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
+.account-menu-item.dropdown-item {
+  margin: 0.25rem 0;
 }
 
 @media (max-width: 300px) {

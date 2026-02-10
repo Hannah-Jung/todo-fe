@@ -2,6 +2,41 @@
   --auth-focus-ring: 0 0 0 0.25rem rgba(173, 216, 230, 0.35);
 }
 
+.auth-brand-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 8vw, 2.5rem);
+  margin-bottom: 0.5rem;
+  color: lightblue;
+  text-decoration: none;
+  line-height: 1;
+  margin-top: 0.5rem;
+}
+
+.auth-brand-title:hover {
+  color: lightblue;
+}
+
+.auth-brand-icon {
+  color: lightcoral;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
+}
+
+.auth-brand-icon svg {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+.auth-brand-text {
+  display: inline-flex;
+  align-items: center;
+}
+
 .auth-page.display-center {
   display: flex;
   flex-direction: column;
@@ -23,9 +58,10 @@
 }
 
 .auth-page .login-box h1 {
+  font-size: 1.5rem;
   color: lightblue;
-  margin: 10px 0 !important;
-  padding: 10px 0;
+  margin: 5px 0 !important;
+  padding: 5px 0;
   text-align: center;
 }
 
@@ -41,36 +77,22 @@
   outline: none;
 }
 
-.auth-page .login-box .btn-primary {
-  border: var(--btn-border-light);
-  background: var(--btn-gradient);
-  color: lightblue;
-  font-weight: 700;
-  transition: 0.3s;
-  box-shadow: var(--btn-shadow-raised);
-}
-
-.auth-page .login-box .btn-primary:hover {
-  background-color: lightblue;
-  border-color: transparent;
-  color: #ffffff;
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
-}
-
 .auth-page .button-box {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 2rem auto;
+  margin: 2rem auto 1.5rem;
 }
 
 .auth-page .login-box span {
-  margin-top: 2rem;
   text-align: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+
+.auth-page .login-box .button-box span {
+  margin-top: 1.5rem;
 }
 
 .auth-page .auth-link-button {
@@ -95,9 +117,6 @@
   border-color: transparent;
 }
 
-.auth-page .login-box .btn-primary:active,
-.auth-page .login-box .btn-primary:focus,
-.auth-page .login-box .btn-primary:focus-visible,
 .auth-page .auth-link-button:active,
 .auth-page .auth-link-button:focus,
 .auth-page .auth-link-button:focus-visible {

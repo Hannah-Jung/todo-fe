@@ -5,6 +5,7 @@
 .add-task-wrapper {
   position: relative;
   gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .add-task-input-icon {
@@ -21,12 +22,7 @@
 
 .button-add-inline {
   flex-shrink: 0;
-  color: lightblue;
   margin-right: 0.5rem !important;
-}
-
-.button-add-inline:hover {
-  background-color: lightblue;
 }
 
 .add-container {
@@ -46,4 +42,17 @@
   max-height: 0;
   opacity: 0;
   margin-bottom: 0;
+}
+
+.add-task-input.is-invalid {
+  border-color: lightcoral;
+}
+
+.add-task-error {
+  color: lightcoral;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+  text-align: left;
+  margin-left: 2.5rem;
 }

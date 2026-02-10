@@ -4,10 +4,17 @@
 
 .search-wrapper {
   position: relative;
+  margin-bottom: 0.5rem;
+  z-index: 1;
 }
 
 .search-wrapper .icon-button {
   margin-right: 0.5rem;
+}
+
+.search-wrapper .app-button.btn-cancel {
+  flex-shrink: 0;
+  margin-right: 0.5rem !important;
 }
 
 .search-icon {

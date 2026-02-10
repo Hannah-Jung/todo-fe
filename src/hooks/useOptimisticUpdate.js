@@ -1,4 +1,5 @@
 import api from "../utils/api";
+import { showSnackbar } from "../utils/Snackbar.jsx";
 
 export const useOptimisticUpdate = (todoList, setTodoList) => {
   const toggleComplete = async (id) => {
@@ -32,7 +33,6 @@ export const useOptimisticUpdate = (todoList, setTodoList) => {
           item._id === id ? { ...item, isComplete: originalIsComplete } : item,
         ),
       );
-      console.log("error", error);
     }
   };
 
@@ -58,6 +58,17 @@ export const useOptimisticUpdate = (todoList, setTodoList) => {
             item._id === id ? { ...item, task: originalTask } : item,
           ),
         );
+      } else {
+        const updated = response.data?.data;
+        if (updated) {
+          setTodoList((prevList) =>
+            prevList.map((item) =>
+              item._id === id
+                ? { ...item, ...updated, author: item.author }
+                : item,
+            ),
+          );
+        }
       }
     } catch (error) {
       setTodoList((prevList) =>
@@ -65,7 +76,6 @@ export const useOptimisticUpdate = (todoList, setTodoList) => {
           item._id === id ? { ...item, task: originalTask } : item,
         ),
       );
-      console.log("error", error);
     }
   };
 
@@ -88,7 +98,7 @@ export const useOptimisticUpdate = (todoList, setTodoList) => {
       if (deletedTask) {
         setTodoList((prev) => [...prev, deletedTask]);
       }
-      console.log("error", error);
+      showSnackbar(error?.error || "Failed to delete");
       return null;
     }
   };

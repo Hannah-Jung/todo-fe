@@ -1,0 +1,414 @@
+.app-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.3s;
+  box-sizing: border-box;
+  border: var(--btn-border-light);
+  background: var(--btn-gradient);
+  box-shadow: var(--btn-shadow-raised);
+  color: lightblue;
+  font-size: 0.875rem;
+}
+
+.app-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.app-button:hover:not(:disabled) {
+  background-color: lightblue;
+  color: white;
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+  border-color: transparent;
+}
+
+.app-button:active:not(:disabled) {
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+  border-color: transparent;
+}
+
+.app-button-small {
+  min-height: 2rem;
+  width: 2rem;
+  padding: 0;
+  font-size: 0.75rem;
+}
+
+.app-button-medium {
+  min-height: 2rem;
+  height: 2rem;
+  padding: 0 0.75rem;
+}
+
+.app-button-large {
+  min-height: 2.75rem;
+  height: 2.75rem;
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+
+.app-button-primary,
+.app-button-cancel {
+  color: lightblue;
+}
+
+.app-button-primary:hover:not(:disabled) {
+  background-color: lightblue;
+  color: white;
+}
+
+.app-button-danger {
+  color: lightcoral;
+  border-color: lightcoral;
+}
+
+.app-button-danger:hover:not(:disabled) {
+  background-color: lightcoral;
+  color: white;
+}
+
+.app-button-cancel:hover:not(:disabled) {
+  background-color: lightblue;
+  color: white;
+}
+
+.app-button-icon {
+  min-height: 2rem;
+  width: 2rem;
+  padding: 0;
+  background-color: transparent;
+  border: 1px solid currentColor;
+}
+
+.app-button-icon.app-button-danger,
+.app-button-icon.btn-delete {
+  color: lightcoral;
+}
+
+.app-button-icon.app-button-danger:hover:not(:disabled),
+.app-button-icon.btn-delete:hover:not(:disabled) {
+  background-color: lightcoral;
+  color: white;
+}
+
+.app-button-icon.app-button-cancel,
+.app-button-icon.btn-done {
+  color: lightblue;
+}
+
+.app-button-icon.app-button-cancel:hover:not(:disabled),
+.app-button-icon.btn-done:hover:not(:disabled) {
+  background-color: lightblue;
+  color: white;
+}
+
+.app-button-icon.btn-undo {
+  border: 1px solid darkgray;
+  color: gray;
+}
+
+.app-button-icon.btn-undo:hover:not(:disabled) {
+  background-color: darkgrey;
+  color: white;
+}
+
+.app-button.app-button-icon.button-add-inline {
+  color: lightblue !important;
+  border-color: lightblue !important;
+  opacity: 1 !important;
+}
+
+.app-button.app-button-icon.button-add-inline .app-button-icon-content {
+  color: lightblue !important;
+}
+
+.app-button.app-button-icon.button-add-inline .app-button-icon-content svg {
+  color: lightblue !important;
+  fill: lightblue !important;
+  stroke: lightblue !important;
+}
+
+.app-button.app-button-icon.button-add-inline:hover:not(:disabled) {
+  background-color: lightblue !important;
+  color: white !important;
+  border-color: transparent !important;
+  box-shadow: var(--btn-shadow-pressed) !important;
+  transform: translateY(1px) !important;
+}
+
+.app-button.app-button-icon.button-add-inline:hover:not(:disabled) .app-button-icon-content {
+  color: white !important;
+}
+
+.app-button.app-button-icon.button-add-inline:hover:not(:disabled) .app-button-icon-content svg {
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+}
+
+.app-button.app-button-icon.button-add-inline:active:not(:disabled) {
+  box-shadow: var(--btn-shadow-pressed) !important;
+  transform: translateY(1px) !important;
+  border-color: transparent !important;
+}
+
+.app-button-toggle {
+  width: 6rem;
+  min-width: 6rem;
+}
+
+.app-button-toggle.app-button-active {
+  background-color: lightblue;
+  color: white;
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+  border-color: transparent;
+}
+
+.app-button-toggle.app-button-active .app-button-icon-content {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.app-button-toggle.app-button-active .app-button-label {
+  opacity: 1;
+  visibility: visible !important;
+}
+
+.app-button-toggle.app-button-active.app-button-hover-label .app-button-label {
+  visibility: visible !important;
+}
+
+.app-button-icon-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-button-hover-label {
+  position: relative;
+}
+
+.app-button-hover-label .app-button-icon-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-button-hover-label .app-button-label {
+  visibility: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+  display: inline-block;
+}
+
+.app-button-hover-label:hover .app-button-icon-content {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.app-button-hover-label:hover .app-button-label {
+  opacity: 1;
+  visibility: visible;
+}
+
+.app-button-label {
+  line-height: 1;
+}
+
+.app-modal .app-button {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+}
+
+.app-modal .app-button-primary {
+  background-color: lightblue;
+  border-color: lightblue;
+  color: #fff;
+}
+
+.app-modal .app-button-primary:hover:not(:disabled) {
+  background-color: #99c2ce;
+  border-color: #99c2ce;
+  color: #fff;
+}
+
+.app-modal .app-button-danger {
+  background-color: lightcoral;
+  border-color: lightcoral;
+  color: #fff;
+}
+
+.app-modal .app-button-danger:hover:not(:disabled) {
+  background-color: #dd7574;
+  border-color: #dd7574;
+  color: #fff;
+}
+
+.app-modal .app-button-cancel {
+  background-color: gray;
+  border-color: gray;
+  color: #fff;
+}
+
+.app-modal .app-button-cancel:hover:not(:disabled) {
+  background-color: dimgray;
+  border-color: dimgray;
+  color: #fff;
+}
+
+.account-menu-dropdown .dropdown-toggle {
+  padding: 0;
+  border: var(--btn-border-light);
+  background: var(--btn-gradient);
+  box-shadow: var(--btn-shadow-raised);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.account-menu-dropdown .dropdown-toggle::after {
+  display: none;
+}
+
+.account-menu-dropdown .dropdown-toggle:hover,
+.account-menu-dropdown .dropdown-toggle:focus,
+.account-menu-dropdown .dropdown-toggle:focus-visible,
+.account-menu-dropdown .dropdown-toggle:active,
+.account-menu-dropdown .dropdown-toggle.show,
+.account-menu-dropdown .btn.dropdown-toggle:hover,
+.account-menu-dropdown .btn.dropdown-toggle:focus,
+.account-menu-dropdown .btn.dropdown-toggle:active,
+.account-menu-dropdown .btn.dropdown-toggle.show {
+  border-color: transparent !important;
+  box-shadow: var(--btn-shadow-pressed) !important;
+  outline: none !important;
+  background-color: lightblue !important;
+  color: white !important;
+  transform: translateY(1px);
+}
+
+.account-avatar-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 5px;
+  background-color: transparent;
+  color: lightblue;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.account-menu-dropdown .dropdown-toggle:hover .account-avatar-letter,
+.account-menu-dropdown .dropdown-toggle:focus .account-avatar-letter,
+.account-menu-dropdown .dropdown-toggle:active .account-avatar-letter,
+.account-menu-dropdown .dropdown-toggle.show .account-avatar-letter {
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.8);
+  background-color: transparent;
+}
+
+.account-menu-icon {
+  color: lightblue;
+}
+
+.account-menu-dropdown .dropdown-toggle:hover .account-menu-icon,
+.account-menu-dropdown .dropdown-toggle:focus .account-menu-icon,
+.account-menu-dropdown .dropdown-toggle:active .account-menu-icon,
+.account-menu-dropdown .dropdown-toggle.show .account-menu-icon {
+  color: white !important;
+}
+
+.account-dropdown-menu.dropdown-menu {
+  width: max-content;
+  min-width: 0;
+  border: 1px solid lightblue;
+  background-color: #f6fbfc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.25rem 0.5rem;
+  z-index: 1050;
+}
+
+.account-dropdown-menu.dropdown-menu:hover .account-menu-item.dropdown-item {
+  background-color: lightblue !important;
+  color: white !important;
+  transform: translateY(1px);
+  border: none !important;
+}
+
+.account-dropdown-menu.dropdown-menu:hover .account-menu-item svg {
+  color: white !important;
+}
+
+.account-dropdown-menu.dropdown-menu:hover .account-menu-item span {
+  color: white !important;
+}
+
+.account-menu-item.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  color: lightblue;
+  font-weight: 600;
+  border: none !important;
+  width: 100%;
+  cursor: pointer;
+}
+
+.account-menu-item svg {
+  flex-shrink: 0;
+  color: lightblue;
+}
+
+.account-menu-item span {
+  color: inherit;
+}
+
+.account-dropdown-menu.dropdown-menu:hover {
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+}
+
+.account-dropdown-menu.dropdown-menu:active {
+  box-shadow: var(--btn-shadow-pressed);
+  transform: translateY(1px);
+}
+
+.account-menu-item.dropdown-item:hover {
+  background-color: lightblue !important;
+  color: white !important;
+  transform: translateY(1px);
+  border: none !important;
+}
+
+.account-menu-item.dropdown-item:hover svg {
+  color: white !important;
+}
+
+.account-menu-item.dropdown-item:hover span {
+  color: white !important;
+}

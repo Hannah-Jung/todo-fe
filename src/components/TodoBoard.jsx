@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import Badge from "react-bootstrap/Badge";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import { BrushCleaning, ChevronUp } from "lucide-react";
+import Button from "./common/Button";
 import TodoItem from "./TodoItem.jsx";
 import "./TodoBoard.css";
 
@@ -123,6 +123,7 @@ const TodoBoard = ({
             <TodoItem
               item={item}
               key={item._id}
+              searchQuery={searchQuery}
               deleteItem={deleteItem}
               restoreTask={restoreTask}
               toggleComplete={toggleComplete}
@@ -144,29 +145,30 @@ const TodoBoard = ({
               marginBottom: "0.5rem",
             }}
           >
-            <button
-              className="clear-btn"
+            <Button
+              variant="danger"
+              size="medium"
+              icon={<BrushCleaning size={20} />}
+              label="CLEAR ALL"
+              showLabelOnHover
               onClick={() => setShowClearConfirmModal(true)}
               title="Clear all completed tasks"
-            >
-              <BrushCleaning size={20} className="clear-btn-icon" />
-              <span className="clear-btn-label">CLEAR ALL</span>
-            </button>
+            />
           </div>
         )}
       </div>
       {showScrollToTop && (
         <div className="scroll-to-top-wrap">
-          <button
-            type="button"
-            className="scroll-to-top-btn"
+          <Button
+            variant="primary"
+            size="large"
+            icon={<ChevronUp size={24} />}
+            label="TOP"
+            showLabelOnHover
             onClick={() =>
               listRef.current?.scrollTo({ top: 0, behavior: "smooth" })
             }
-          >
-            <ChevronUp size={24} className="scroll-to-top-icon" />
-            <span className="scroll-to-top-label">TOP</span>
-          </button>
+          />
         </div>
       )}
       <Modal
@@ -183,15 +185,12 @@ const TodoBoard = ({
         </Modal.Body>
         <Modal.Footer className="app-modal-footer app-modal-footer-end">
           <Button
-            className="app-modal-btn-cancel"
+            variant="cancel"
             onClick={() => setShowClearConfirmModal(false)}
           >
             Cancel
           </Button>
-          <Button
-            className="app-modal-btn-danger"
-            onClick={handleClearConfirmed}
-          >
+          <Button variant="danger" onClick={handleClearConfirmed}>
             Clear All
           </Button>
         </Modal.Footer>

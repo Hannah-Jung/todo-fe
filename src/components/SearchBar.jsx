@@ -2,6 +2,7 @@ import { useRef, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Search, X } from "lucide-react";
+import Button from "./common/Button";
 import "./SearchBar.css";
 
 function SearchBar({ value, onChange, onClear, isOpen, onToggle }) {
@@ -66,16 +67,17 @@ function SearchBar({ value, onChange, onClear, isOpen, onToggle }) {
               }}
               autoFocus
             />
-            <button
-              className="icon-button btn-cancel"
+            <Button
+              variant="icon"
+              size="small"
+              icon={<X size={20} />}
               onClick={() => {
                 onClear();
                 onToggle();
               }}
               title="Close"
-            >
-              <X size={20} />
-            </button>
+              className="btn-cancel"
+            />
           </div>
         </Col>
       </Row>

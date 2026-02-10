@@ -1,12 +1,31 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Col, Row, Modal, Button } from "react-bootstrap";
+import { Col, Row, Modal } from "react-bootstrap";
 import { Undo, Check, Trash } from "lucide-react";
+import Button from "./common/Button";
 import timeStamps from "../utils/timeStamps";
 import { showSnackbarWithUndo } from "../utils/Snackbar.jsx";
 import "./TodoItem.css";
 
+function highlightMatch(text, query) {
+  if (!query.trim()) return text;
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const regex = new RegExp(`(${escaped})`, "gi");
+  const parts = text.split(regex);
+  return parts.map((part, i) => {
+    const isMatch = part.toLowerCase() === query.toLowerCase();
+    return isMatch ? (
+      <span key={`hl-${i}-${part.slice(0, 8)}`} className="search-highlight">
+        {part}
+      </span>
+    ) : (
+      part
+    );
+  });
+}
+
 const TodoItem = ({
   item,
+  searchQuery = "",
   toggleComplete,
   deleteItem,
   restoreTask,
@@ -72,7 +91,6 @@ const TodoItem = ({
     await handleDeleteWithUndo();
     setIsEditing(false);
   };
-
   return (
     <>
       <Row className="todo-item-row align-items-stretch">
@@ -85,31 +103,55 @@ const TodoItem = ({
               onClick={() => !item.isComplete && setIsEditing(true)}
               style={{ cursor: item.isComplete ? "default" : "pointer" }}
             >
-              {item.task}
+              {searchQuery.trim()
+                ? highlightMatch(item.task, searchQuery.trim())
+                : item.task}
             </div>
             <div className="d-flex flex-row align-items-center  todo-item-actions">
-              <button
-                className={`icon-button ${item.isComplete ? "btn-undo" : "btn-done"}`}
-                onClick={() => toggleComplete(item._id)}
-                title={item.isComplete ? "Undo" : "Done"}
-              >
-                {item.isComplete ? <Undo size={20} /> : <Check size={20} />}
-              </button>
+              {item.isComplete ? (
+                <Button
+                  variant="icon"
+                  size="small"
+                  icon={<Undo size={20} />}
+                  onClick={() => toggleComplete(item._id)}
+                  title="Undo"
+                  className="btn-undo"
+                />
+              ) : (
+                <Button
+                  variant="icon"
+                  size="small"
+                  icon={<Check size={20} />}
+                  onClick={() => toggleComplete(item._id)}
+                  title="Done"
+                  className="btn-done"
+                />
+              )}
 
-              <button
-                className="icon-button btn-delete"
+              <Button
+                variant="icon"
+                size="small"
+                icon={<Trash size={20} />}
                 onClick={handleDeleteWithUndo}
                 title="Delete"
-              >
-                <Trash size={20} />
-              </button>
+                className="btn-delete"
+              />
             </div>
           </div>
           <div className="todo-created-at">
-            {hasBeenEdited && (
-              <span style={{ fontSize: "0.7rem", color: "gray" }}>Edited </span>
-            )}
-            {timeStamps(displayTime)}
+            <span
+              title={
+                hasBeenEdited ? `Created ${timeStamps(item.createdAt)}` : ""
+              }
+            >
+              {hasBeenEdited && (
+                <span style={{ fontSize: "0.7rem", color: "gray" }}>
+                  Edited{" "}
+                </span>
+              )}
+              {timeStamps(displayTime)}
+            </span>
+            {item.author?.name && ` · by ${item.author.name}`}
           </div>
         </Col>
       </Row>
@@ -136,16 +178,22 @@ const TodoItem = ({
             }}
             rows={2}
           />
+          <div className="todo-edit-timestamps">
+            {hasBeenEdited && (
+              <div>Edited {timeStamps(item.lastTextEditedAt)}</div>
+            )}
+            <div>Created {timeStamps(item.createdAt)}</div>
+          </div>
         </Modal.Body>
         <Modal.Footer className="app-modal-footer app-modal-footer-edit">
-          <Button className="app-modal-btn-danger" onClick={handleDelete}>
+          <Button variant="danger" onClick={handleDelete}>
             Delete
           </Button>
           <div className="app-modal-footer-actions">
-            <Button className="app-modal-btn-cancel" onClick={handleCancel}>
+            <Button variant="cancel" onClick={handleCancel}>
               Cancel
             </Button>
-            <Button className="app-modal-btn-primary" onClick={handleSave}>
+            <Button variant="primary" onClick={handleSave}>
               Save
             </Button>
           </div>

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { CircleCheckBig } from "lucide-react";
 import PasswordField from "../components/common/PasswordField";
+import Button from "../components/common/Button";
 import api from "../utils/api";
 import { isValidEmail } from "../utils/validation";
 import "./LoginPage.css";
 
-const LoginPage = () => {
+const LoginPage = ({ user, setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
@@ -39,7 +39,7 @@ const LoginPage = () => {
         sessionStorage.setItem("token", response.data.token);
         api.defaults.headers["authorization"] = "Bearer " + response.data.token;
         toast.success(`Welcome back, ${response.data.user?.name || "there"}!`);
-        navigate("/");
+        navigate("/todo");
       } else {
         throw new Error(response.message);
       }
@@ -48,10 +48,19 @@ const LoginPage = () => {
       setPasswordError(message);
     }
   };
-
+  if (user) {
+    return <Navigate to="/todo" />;
+  }
   return (
-    <div className="auth-page display-center">
+    <div className="auth-page display-center page-transition">
       <Form className="login-box" onSubmit={handleLogin}>
+        <Link to="/" className="auth-brand-title">
+          <span className="auth-brand-text">CHECK IT</span>
+          <span className="auth-brand-icon">
+            <CircleCheckBig strokeWidth={2.5} />
+          </span>
+          <span className="auth-brand-text">FF</span>
+        </Link>
         <h1>Login</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email Address</Form.Label>
@@ -93,7 +102,7 @@ const LoginPage = () => {
           error={passwordError}
         />
         <div className="button-box">
-          <Button type="submit" className="btn-primary">
+          <Button type="submit" variant="primary" size="large">
             Login
           </Button>
           <span>

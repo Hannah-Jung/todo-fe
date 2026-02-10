@@ -8,12 +8,15 @@
 .todo-tabs {
   display: flex;
   gap: 0.75rem;
-  margin: 0.5rem 0 0.5rem;
+  margin: 1.5rem 0 0.5rem;
   border-bottom: 1px solid lightblue;
   justify-content: center;
+  width: 100%;
 }
 
 .todo-tab {
+  flex: 1;
+  min-width: 0;
   padding: 0 1.5rem 0.25rem;
   background-color: transparent;
   border: 1px solid transparent;
@@ -103,103 +106,12 @@
   margin: 0;
 }
 
-.clear-btn {
-  width: 6rem;
-  min-width: 6rem;
-  height: 2rem;
-  background: var(--btn-gradient);
-  border: 1px solid lightcoral;
-  box-sizing: border-box;
-  color: lightcoral;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 0.875rem;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  box-shadow: var(--btn-shadow-raised);
-}
-
-.clear-btn-label {
-  display: none;
-  line-height: 1;
-}
-
-.clear-btn:hover .clear-btn-icon {
-  display: none;
-}
-
-.clear-btn:hover .clear-btn-label {
-  display: inline;
-}
-
-.clear-btn:hover {
-  background-color: lightcoral;
-  color: white;
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
-  border-color: transparent;
-}
-
-.clear-btn:active {
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
-  border-color: transparent;
-}
-
 .scroll-to-top-wrap {
   display: flex;
   justify-content: center;
-  margin: 0.5rem 0;
-}
-
-.scroll-to-top-btn {
-  background: var(--btn-gradient);
-  border: var(--btn-border-light);
-  color: lightblue;
-  cursor: pointer;
-  padding: 0 0.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s;
-  min-width: 2.5rem;
-  width: 2.75rem;
-  height: 2.75rem;
-  box-sizing: border-box;
-  border-radius: 5px;
-  box-shadow: var(--btn-shadow-raised);
-}
-
-.scroll-to-top-label {
-  display: none;
-  font-weight: 700;
-  font-size: 0.875rem;
-  line-height: 1;
-}
-
-.scroll-to-top-btn:hover .scroll-to-top-icon {
-  display: none;
-}
-
-.scroll-to-top-btn:hover .scroll-to-top-label {
-  display: inline;
-}
-
-.scroll-to-top-btn:hover {
-  background-color: lightblue;
-  color: white;
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
-  border-color: transparent;
-}
-
-.scroll-to-top-btn:active {
-  box-shadow: var(--btn-shadow-pressed);
-  transform: translateY(1px);
-  border-color: transparent;
+  width: 100%;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 480px) {

@@ -57,3 +57,16 @@
   resize: none;
   overflow-y: auto;
 }
+
+.todo-edit-timestamps {
+  text-align: right;
+  font-size: 0.7rem;
+  color: gray;
+  line-height: 1.4;
+}
+
+.search-highlight {
+  background-color: rgba(173, 216, 230, 0.7);
+  font-weight: 600;
+  border-radius: 2px;
+}

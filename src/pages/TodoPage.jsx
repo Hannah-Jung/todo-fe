@@ -1,6 +1,13 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import Container from "react-bootstrap/Container";
-import { CircleCheckBig, Search, Plus } from "lucide-react";
+import { Dropdown } from "react-bootstrap";
+import {
+  CircleCheckBig,
+  Search,
+  Plus,
+  CircleUserRound,
+  LogOut,
+} from "lucide-react";
 import { useOptimisticUpdate } from "../hooks/useOptimisticUpdate";
 import { showSnackbar, showSnackbarWithUndo } from "../utils/Snackbar.jsx";
 import api from "../utils/api";
@@ -8,10 +15,11 @@ import TodoBoard from "../components/TodoBoard.jsx";
 import SearchBar from "../components/SearchBar.jsx";
 import AddTaskForm from "../components/AddTaskForm.jsx";
 import Loader from "../components/common/Loader.jsx";
+import Button from "../components/common/Button";
 import "./TodoPage.css";
 import "../utils/Snackbar.css";
 
-function TodoPage() {
+function TodoPage({ logout, user }) {
   const [todoList, setTodoList] = useState([]);
   const [todoValue, setTodoValue] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,6 +27,7 @@ function TodoPage() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("all");
+  const isLoadingTasksRef = useRef(false);
 
   const filteredList = useMemo(
     () =>
@@ -36,16 +45,25 @@ function TodoPage() {
     todoList,
     setTodoList,
   );
-
   const getTasks = async (silent = false) => {
+    if (isLoadingTasksRef.current && !silent) return;
+
     try {
-      if (!silent) setIsLoading(true);
+      if (!silent) {
+        setIsLoading(true);
+        isLoadingTasksRef.current = true;
+      }
       const response = await api.get("/tasks");
       setTodoList(response.data.data);
     } catch (err) {
-      console.log("Error", err);
+      if (!silent) {
+        showSnackbar(err?.error || "Failed to load");
+      }
     } finally {
-      if (!silent) setIsLoading(false);
+      if (!silent) {
+        setIsLoading(false);
+        isLoadingTasksRef.current = false;
+      }
     }
   };
 
@@ -56,14 +74,13 @@ function TodoPage() {
         isComplete: false,
       });
       if (response.status === 200) {
-        console.log("Successfully added a task");
         setTodoValue("");
         getTasks(true);
       } else {
         throw new Error("Task cannot be added");
       }
     } catch (err) {
-      console.log("Error", err);
+      showSnackbar(err?.error || "Failed to add");
     }
   };
 
@@ -78,25 +95,28 @@ function TodoPage() {
       getTasks(true);
       showSnackbar("All completed tasks have been deleted");
     } catch (error) {
-      console.log("error", error);
+      showSnackbar(error?.error || "Failed to clear");
     }
   };
-
   const restoreTask = async (task) => {
     try {
       await api.post("/tasks", {
         task: task.task,
         isComplete: task.isComplete ?? false,
+        ...(task.createdAt && { createdAt: task.createdAt }),
+        ...(task.lastTextEditedAt && {
+          lastTextEditedAt: task.lastTextEditedAt,
+        }),
       });
       getTasks(true);
     } catch (err) {
-      console.log("Error restoring task", err);
+      showSnackbar(err?.error || "Failed to restore");
     }
   };
 
   return (
-    <Container>
-      <div style={{ flexShrink: 0, textAlign: "center" }}>
+    <Container className="page-transition">
+      <div style={{ flexShrink: 0, textAlign: "center", width: "100%" }}>
         <h1 className="title">
           <span className="title-text">CHECK IT</span>
           <span className="title-icon">
@@ -105,31 +125,70 @@ function TodoPage() {
           <span className="title-text">FF</span>
         </h1>
         <div className="icon-buttons-row">
-          <button
+          <Button
+            variant="toggle"
+            icon={<Plus size={24} />}
+            label="ADD"
+            showLabelOnHover
+            isActive={isAddOpen}
             onClick={() => {
               setSearchQuery("");
               setIsSearchOpen(false);
               setSelectedTab("all");
               setIsAddOpen(!isAddOpen);
             }}
-            className={`icon-button add-toggle-button${isAddOpen ? " add-toggle-open" : ""}`}
             title="Add Task"
-          >
-            <Plus size={24} className="add-toggle-icon" />
-            <span className="add-toggle-label">ADD</span>
-          </button>
-          <button
+            className="add-toggle-button"
+          />
+          <Button
+            variant="toggle"
+            icon={<Search size={24} />}
+            label="SEARCH"
+            showLabelOnHover
+            isActive={isSearchOpen}
             onClick={() => {
               const willOpen = !isSearchOpen;
               setIsSearchOpen(willOpen);
               if (willOpen) setSelectedTab("all");
             }}
-            className={`icon-button search-toggle-button${isSearchOpen ? " search-toggle-open" : ""}`}
             title="Search"
-          >
-            <Search size={24} className="search-toggle-icon" />
-            <span className="search-toggle-label">SEARCH</span>
-          </button>
+            className="search-toggle-button"
+          />
+
+          <div className="account-menu-wrapper">
+            <Dropdown align="start" className="account-menu-dropdown">
+              <Dropdown.Toggle
+                variant="light"
+                id="account-menu-toggle"
+                className="account-menu-toggle"
+                title={user?.name || ""}
+              >
+                {user?.name ? (
+                  <span className="account-avatar-letter">
+                    {user.name.trim()[0]?.toUpperCase() || "?"}
+                  </span>
+                ) : (
+                  <CircleUserRound size={24} className="account-menu-icon" />
+                )}
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="account-dropdown-menu">
+                <Dropdown.ItemText className="account-menu-name">
+                  {user?.name || "User"}
+                </Dropdown.ItemText>
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  eventKey="logout"
+                  onClick={() => {
+                    logout();
+                  }}
+                  className="account-menu-item"
+                >
+                  <LogOut size={18} />
+                  <span>LOGOUT</span>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
         </div>
 
         <SearchBar

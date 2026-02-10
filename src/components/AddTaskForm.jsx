@@ -1,12 +1,14 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Plus, SquarePen } from "lucide-react";
+import Button from "./common/Button";
 import "./AddTaskForm.css";
 
 function AddTaskForm({ value, onChange, onSubmit, isOpen, onToggle, onClear }) {
   const formRef = useRef(null);
   const inputRef = useRef(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -22,6 +24,7 @@ function AddTaskForm({ value, onChange, onSubmit, isOpen, onToggle, onClear }) {
         if (value.trim()) {
           onClear();
         }
+        setErrorMessage("");
         onToggle();
       }
     };
@@ -39,8 +42,26 @@ function AddTaskForm({ value, onChange, onSubmit, isOpen, onToggle, onClear }) {
     if (isOpen) {
       const t = setTimeout(() => inputRef.current?.focus(), 0);
       return () => clearTimeout(t);
+    } else {
+      setErrorMessage("");
     }
   }, [isOpen]);
+
+  const handleSubmit = () => {
+    if (!value.trim()) {
+      setErrorMessage("Enter your task first");
+      return;
+    }
+    setErrorMessage("");
+    onSubmit();
+  };
+
+  const handleChange = (e) => {
+    onChange(e);
+    if (errorMessage) {
+      setErrorMessage("");
+    }
+  };
 
   return (
     <div
@@ -55,28 +76,34 @@ function AddTaskForm({ value, onChange, onSubmit, isOpen, onToggle, onClear }) {
               ref={inputRef}
               type="text"
               placeholder="Add your task here"
-              className="input-box input-inline add-task-input"
+              className={`input-box input-inline add-task-input ${errorMessage ? "is-invalid" : ""}`}
               value={value}
-              onChange={onChange}
+              onChange={handleChange}
               onKeyDown={(e) => {
-                if (e.key === "Enter" && value.trim()) {
-                  onSubmit();
+                if (e.key === "Enter") {
+                  handleSubmit();
                 }
                 if (e.key === "Escape") {
+                  setErrorMessage("");
                   onToggle();
                 }
               }}
               autoFocus
             />
-            <button
-              className="icon-button button-add-inline"
-              onClick={onSubmit}
-              disabled={!value.trim()}
+            <Button
+              variant="icon"
+              size="small"
+              icon={<Plus size={20} />}
+              onClick={handleSubmit}
               title="Add"
-            >
-              <Plus size={20} />
-            </button>
+              className="button-add-inline"
+            />
           </div>
+          {errorMessage && (
+            <div className="add-task-error" role="alert">
+              {errorMessage}
+            </div>
+          )}
         </Col>
       </Row>
     </div>
